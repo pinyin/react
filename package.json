@@ -1,7 +1,7 @@
 {
   "name": "@pinyin/react",
-  "version": "0.0.3",
-  "description": "The animation library to use when you don't want to bother about animations.",
+  "version": "0.0.4",
+  "description": "React helpers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -25,19 +25,9 @@
     "url": "https://github.com/pinyin/react/issues"
   },
   "homepage": "https://github.com/pinyin/react#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@pinyin/maybe": "^0.0.5",
     "@pinyin/types": "^0.0.2",
-    "tslib": "^1.9.0"
-  },
-  "peerDependencies": {
-    "@types/react": "^16.3.13",
-    "react": "^16.3.2"
-  },
-  "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "jest": "^22.4.3",
-    "ts-jest": "^22.4.4",
-    "typescript": "^2.9.0-dev.20180501"
+    "@types/react": "^16.3.13"
   }
 }
