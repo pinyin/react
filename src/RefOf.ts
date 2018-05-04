@@ -3,9 +3,9 @@ import {Component, ComponentClass, ReactHTML} from 'react'
 import {ElementFromHTMLTag} from './ElementFromHTMLTag'
 
 export type RefOf<A> =
-    A extends Component ?
+    A extends Component<any> ?
         A :
-        A extends ComponentClass ?
+        A extends ComponentClass<any> ?
             InstanceOf<A> :
             A extends keyof ReactHTML ?
                 ElementFromHTMLTag<A> :
