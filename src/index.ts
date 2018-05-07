@@ -1,6 +1,0 @@
-export {ElementFromHTMLTag} from './ElementFromHTMLTag'
-export {EventHandler} from './EventHandler'
-export {forwardInnerRef} from './forwardInnerRef'
-export {PropsOf} from './PropsOf'
-export {Referable} from './Referable'
-export {RefOf} from './RefOf'

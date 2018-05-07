@@ -15,14 +15,7 @@
       "esnext.array"
     ]
   },
-  "exclude": [
-    "node_modules",
-    "vendor",
-    ".idea",
-    ".vscode",
-    "build",
-    "dist",
-    "**/*.spec.*",
-    "**/*.test.*"
+  "include": [
+    "./index.ts"
   ]
 }
