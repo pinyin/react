@@ -1,6 +1,6 @@
 {
   "name": "@pinyin/react",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React helpers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,11 +26,11 @@
     "url": "https://github.com/pinyin/react/issues"
   },
   "homepage": "https://github.com/pinyin/react#readme",
-  "devDependencies": {
-    "@types/react": "^16.3.13",
-    "@pinyin/types": "^0.0.2"
+  "peerDependencies": {
+    "@types/react": "^16.3.13"
   },
   "dependencies": {
+    "@pinyin/types": "^0.0.9",
     "@pinyin/maybe": "^0.0.5"
   }
 }
