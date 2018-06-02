@@ -1,11 +1,13 @@
-import {ClassAttributes, ComponentType, createElement, forwardRef, Ref} from 'react'
+import {ObjExclude} from '@pinyin/types'
+import {ComponentType, createElement, forwardRef, Ref} from 'react'
 import {PropsOf} from './PropsOf'
+import {Referable} from './Referable'
+import {RefOf} from './RefOf'
 
-// TODO support other keys
-export function forwardInnerRef<C extends WithInnerRef<any, any>>(HOC: C): ForwardedInnerRef<C> {
-    return forwardRef<InnerRefOf<C>, PropsOf<ForwardedInnerRef<C>>>((props, ref) => {
-        return createElement<PropsOf<C>>(
-            HOC,
+export function forwardInnerRef<C extends ComponentType<WithInnerRef<any>>>(Wrapped: C): ComponentType<ObjExclude<PropsOf<C>, WithInnerRef<any>>> {
+    return forwardRef<InnerRefInProps<C>, ObjExclude<PropsOf<C>, WithInnerRef<any>>>((props, ref) => {
+        return createElement(
+            Wrapped as any, // TODO
             Object.assign(
                 {},
                 props,
@@ -16,13 +18,11 @@ export function forwardInnerRef<C extends WithInnerRef<any, any>>(HOC: C): Forwa
     })
 }
 
-export type WithInnerRef<C, P extends { innerRef?: Ref<C> }> = ComponentType<P>
+export type WithInnerRef<T extends Referable> = {
+    innerRef?: Ref<RefOf<T>>
+}
 
-export type ForwardedInnerRef<C extends WithInnerRef<any, any>> =
-    ComponentType<PropsOf<C> &
-        { innerRef: never } &
-        ClassAttributes<InnerRefOf<C>>>
-
-export type InnerRefOf<C extends WithInnerRef<any, any>> =
-    C extends WithInnerRef<infer R, any> ? R : never
-
+export type InnerRefInProps<T extends ComponentType<WithInnerRef<any>>> =
+    T extends ComponentType<WithInnerRef<infer R>> ?
+        R :
+        never

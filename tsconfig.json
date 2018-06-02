@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es5",
+    "jsx": "react",
     "module": "commonjs",
     "esModuleInterop": true,
     "declaration": true,
@@ -9,6 +10,7 @@
     "declarationDir": "dist",
     "importHelpers": true,
     "noEmitHelpers": true,
+    "noErrorTruncation": true,
     "lib": [
       "es6",
       "dom",

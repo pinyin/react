@@ -14,10 +14,6 @@ module.exports = {
         'json',
         'node'
     ],
-    // 'moduleNameMapper': {
-    //     '^transformation-matrix/(.*)':
-    //         '<rootDir>/node_modules/transformation-matrix/build-commonjs/$1'
-    // },
     'verbose': true,
     'globals': {
         'ts-jest': {

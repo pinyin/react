@@ -1,3 +1,3 @@
-import {ComponentClass, ReactHTML} from 'react'
+import {Component, ComponentClass, ReactHTML} from 'react'
 
-export type Referable = ComponentClass<any> | keyof ReactHTML
+export type Referable = ComponentClass<any> | Component<any, any> | keyof ReactHTML | Element

@@ -9,9 +9,18 @@ export type PropsOf<T extends ComponentType<any> | ComponentClass<any> | Compone
                 R :
                 T extends Component<infer R, any> ?
                     R :
-                    T extends keyof ReactHTML ?
-                        ReactHTML[T] extends DetailedHTMLFactory<infer R, any> ?
-                            R :
-                            never :
-                        never
+                    T extends HTMLElement ?
+                        PropsOfElement<T> :
+                        T extends keyof ReactHTML ?
+                            PropsOfTag<T> :
+                            never
+// TODO Support SVG element
 
+export type PropsOfTag<T extends keyof ReactHTML> =
+    ReactHTML[T] extends DetailedHTMLFactory<infer R, any> ?
+        R :
+        never
+
+export type PropsOfElement<T extends HTMLElement, K extends keyof ReactHTML = keyof ReactHTML> = {
+    [key in K]: ReactHTML[key] extends DetailedHTMLFactory<infer R, T> ? R : never
+}[K]
