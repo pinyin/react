@@ -21,5 +21,9 @@ export type PropsOfTag<T extends keyof ReactHTML> =
         never
 
 export type PropsOfElement<T extends HTMLElement, K extends keyof ReactHTML = keyof ReactHTML> = {
-    [key in K]: ReactHTML[key] extends DetailedHTMLFactory<infer R, T> ? R : never
+    [key in K]: ReactHTML[key] extends DetailedHTMLFactory<any, T> ?
+        ReactHTML[key] extends DetailedHTMLFactory<infer R, any> ?
+            R :
+            never :
+        never
 }[K]
