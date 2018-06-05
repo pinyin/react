@@ -1,6 +1,6 @@
-import {Component, ComponentClass, ComponentType, DetailedHTMLFactory, ReactHTML, StatelessComponent} from 'react'
+import {Component, ComponentClass, ComponentType, DetailedHTMLFactory, DOMFactory, ReactHTML, ReactSVG, StatelessComponent} from 'react'
 
-export type PropsOf<T extends ComponentType<any> | ComponentClass<any> | Component<any, any> | StatelessComponent<any> | keyof ReactHTML | HTMLElement> =
+export type PropsOf<T extends ComponentType<any> | ComponentClass<any> | Component<any, any> | StatelessComponent<any> | keyof ReactHTML | keyof ReactSVG | HTMLElement> =
     T extends ComponentType<infer R> ?
         R :
         T extends ComponentClass<infer R> ?
@@ -9,21 +9,18 @@ export type PropsOf<T extends ComponentType<any> | ComponentClass<any> | Compone
                 R :
                 T extends Component<infer R, any> ?
                     R :
-                    T extends HTMLElement ? // TODO Support SVG element
-                        PropsOfElement<T> :
-                        T extends keyof ReactHTML ?
-                            PropsOfTag<T> :
+                    T extends keyof ReactHTML ?
+                        PropsOfHTMLTag<T> :
+                        T extends keyof ReactSVG ?
+                            PropsOfSVGTag<T> :
                             never
 
-export type PropsOfTag<T extends keyof ReactHTML> =
+export type PropsOfHTMLTag<T extends keyof ReactHTML> =
     ReactHTML[T] extends DetailedHTMLFactory<infer R, any> ?
         R :
         never
 
-export type PropsOfElement<T extends HTMLElement, K extends keyof ReactHTML = keyof ReactHTML> = {
-    [key in K]: ReactHTML[key] extends DetailedHTMLFactory<any, T> ?
-        ReactHTML[key] extends DetailedHTMLFactory<infer R, any> ?
-            R :
-            never :
+export type PropsOfSVGTag<T extends keyof ReactSVG> =
+    ReactSVG[T] extends DOMFactory<infer R, any> ?
+        R :
         never
-}[K]
